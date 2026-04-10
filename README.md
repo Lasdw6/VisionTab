@@ -10,8 +10,3 @@ VisionTab is a multimodal tab completion model designed to provide intelligent, 
 - **Techniques:** Fine-tuned using **LoRA** (Low-Rank Adaptation) and **FIM** (Fill-In-the-Middle) to effectively learn code insertion and completion tasks.
 - **Training Hardware:** 2x T4 GPUs
 - **Dataset Size:** 10,000 samples
-
-## Setup
-```bash
-pip install -r requirements.txt
-```
