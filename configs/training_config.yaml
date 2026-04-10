@@ -1,0 +1,63 @@
+# Gemma 4 E4B Multimodal Tab Completion - Training Configuration
+# Reference papers: [AST-FIM], [HLP], [Mellum], [VinciCoder]
+
+model:
+  name: "google/gemma-4-E4B"
+  max_seq_length: 4096
+  load_in_4bit: true
+
+lora:
+  r: 32
+  lora_alpha: 64
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  lora_dropout: 0.05
+  use_gradient_checkpointing: "unsloth"
+
+fim:
+  prefix_token: "<fim_prefix>"
+  suffix_token: "<fim_suffix>"
+  middle_token: "<fim_middle>"
+  fim_rate: 0.5
+  psm_ratio: 0.5
+  use_ast_aware: true
+  min_mask_bytes: 10
+  max_mask_bytes: 500
+
+data:
+  languages:
+    - python
+    - javascript
+    - typescript
+    - rust
+    - go
+    - java
+  max_samples_per_language: 50000
+  chunk_size_tokens: 2048
+  validation_split: 0.05
+  output_dir: "./data/fim_dataset"
+  multimodal_output_dir: "./data/multimodal_dataset"
+
+training:
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  num_train_epochs: 3
+  learning_rate: 2.0e-4
+  fp16: true
+  warmup_ratio: 0.03
+  lr_scheduler_type: "cosine"
+  logging_steps: 10
+  save_steps: 500
+  output_dir: "/kaggle/working/gemma4-e4b-fim"
+
+multimodal:
+  text_only_ratio: 0.6
+  image_max_tokens: 280
+  max_seq_length: 2048
+  lora_r: 16
