@@ -18,7 +18,7 @@ References:
     [Design2Code] Benchmarking Screenshot-to-Code (NAACL 2025)
 
 Usage:
-    python -m data_prep.multimodal_dataset --config configs/training_config.yaml
+    python -m tab.multimodal_dataset --config configs/training_config.yaml
 """
 
 import argparse
@@ -165,7 +165,7 @@ class MultimodalPipeline:
         if not os.path.exists(self.fim_dataset_dir):
             raise FileNotFoundError(
                 f"FIM dataset not found at {self.fim_dataset_dir}. "
-                "Run Phase 1 first: python -m data_prep --config configs/training_config.yaml"
+                "Run Phase 1 first: python -m tab --config configs/training_config.yaml"
             )
 
         fim_ds = load_from_disk(self.fim_dataset_dir)

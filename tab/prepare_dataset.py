@@ -5,7 +5,7 @@ Downloads a subset of The Stack v2 from HuggingFace, applies AST-aware FIM
 transformation, and saves as a HuggingFace Dataset ready for upload to Kaggle.
 
 Usage:
-    python -m data_prep.prepare_dataset --config configs/training_config.yaml
+    python -m tab.prepare_dataset --config configs/training_config.yaml
 
 References:
     [AST-FIM] Structure-Aware Fill-in-the-Middle Pretraining for Code
